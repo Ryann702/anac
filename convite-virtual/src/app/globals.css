@@ -1,17 +1,16 @@
+/* No seu globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #FDFBF7; 
-  --foreground: #8B2C47; 
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Isso aqui é a chave! */
+  width: 100%;
 }
+
+:root {
+  --background: #FDFBF7;
+  --foreground: #8B2C47;
+}
+/* ... resto do seu código */

@@ -1,7 +1,7 @@
 "use client";
 import { Playfair_Display, Great_Vibes, Montserrat } from 'next/font/google';
 import { motion } from 'framer-motion';
-import { MapPin, Check, Gift, Search } from 'lucide-react';
+import { MapPin, Check, Search } from 'lucide-react';
 import Link from 'next/link';
 
 const playfair = Playfair_Display({ subsets: ['latin'] });
@@ -16,18 +16,21 @@ export default function ConviteAberto() {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay: 0.4 }}
-      className="w-full max-w-md bg-[#FFF5F5] min-h-screen flex flex-col items-center shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-x relative overflow-x-hidden scroll-smooth mx-auto"
+      // AJUSTE: min-h-[100dvh] para Safari e remoção de scroll-smooth que às vezes trava no iOS
+      className="w-full max-w-md bg-[#FFF5F5] min-h-[100dvh] flex flex-col items-center shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-x relative overflow-x-hidden mx-auto"
     >
       
       {/* SEÇÃO 1: O CONVITE PRINCIPAL */}
-      <section className="relative w-full flex flex-col items-center justify-start text-center py-10 px-8 z-10">
+      {/* AJUSTE: overflow-hidden na seção impede que as flores criem a barra de rolagem fantasma */}
+      <section className="relative w-full flex flex-col items-center justify-start text-center py-10 px-8 z-10 overflow-hidden">
         
         {/* FLORAL DO TOPO */}
         <div className="absolute top-[-30px] right-0 w-[110%] max-w-[480px] pointer-events-none -z-10">
           <img 
             src={FLORAL_IMG} 
             alt="Arranjo Floral Topo" 
-            className="w-full h-auto object-contain mix-blend-multiply opacity-90" 
+            // AJUSTE: transform-gpu para scroll liso no iPhone
+            className="w-full h-auto object-contain mix-blend-multiply opacity-90 transform-gpu" 
           />
         </div>
 
@@ -79,12 +82,12 @@ export default function ConviteAberto() {
         <div className="flex flex-col gap-8 w-full z-20">
           <ActionButton Icon={MapPin} label="LOCAL DA FESTA" href="/local" />
           <ActionButton Icon={Check} label="CONFIRMAR PRESENÇA" href="/confirmar-presenca" />
-          <ActionButton Icon={Search} label="SUGESTÕES DE PRESENTE" href="/sugestoes" />
+          <ActionButton Icon={Search} label="SUGESTÃO DE PRESENTE" href="/sugestoes" />
         </div>
       </section>
 
       {/* SEÇÃO 3: MANUAL E DRESS CODE */}
-      <section id="manual" className="w-full bg-[#FFF5F5] pt-10 pb-40 px-8 flex flex-col items-center relative">
+      <section id="manual" className="w-full bg-[#FFF5F5] pt-10 pb-40 px-8 flex flex-col items-center relative overflow-hidden">
         <div className="relative flex items-center justify-center p-12 mb-16">
             <div className="absolute inset-0 bg-white rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#eedad3]"></div>
             <h3 className={`${greatVibes.className} text-6xl text-[#991A3D] z-10 leading-none text-center`}>
@@ -111,7 +114,7 @@ export default function ConviteAberto() {
           <img 
             src={FLORAL_IMG} 
             alt="Arranjo Floral Rodapé" 
-            className="w-full h-auto object-contain mix-blend-multiply opacity-90" 
+            className="w-full h-auto object-contain mix-blend-multiply opacity-90 transform-gpu" 
           />
         </div>
       </section>
@@ -135,7 +138,8 @@ function ActionButton({ Icon, label, href }: { Icon: any; label: string; href?: 
     );
 
     if (href) {
-        return <Link href={href} className="w-full">{buttonContent}</Link>;
+        // AJUSTE: Adicionei o ?open=true para quando o usuário voltar, o convite continuar aberto
+        return <Link href={`${href}?open=true`} className="w-full">{buttonContent}</Link>;
     }
 
     return buttonContent;

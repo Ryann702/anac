@@ -22,16 +22,16 @@ export default function LocalPage() {
         
         {/* FLORAL DO TOPO - Ajustado para as extremidades para não cobrir o botão */}
         <div className="absolute top-[-70px] right-[-40px] w-[110%] max-w-[480px] pointer-events-none z-0">
-          <img 
-            src={FLORAL_IMG} 
-            alt="" 
-            className="w-full h-auto object-contain mix-blend-multiply opacity-90" 
-          />
+        <img 
+          src={FLORAL_IMG} 
+          alt="Arranjo Floral" 
+          className="w-full h-auto object-contain mix-blend-multiply opacity-90 transform-gpu" 
+        />
         </div>
 
         {/* Botão Voltar - Com fundo e z-index alto para total visibilidade */}
         <div className="w-full p-6 pt-12 z-30">
-          <Link href="/" className="inline-flex items-center gap-2 text-[#991A3D] hover:opacity-70 transition-opacity bg-white/70 px-4 py-2 rounded-full backdrop-blur-md shadow-sm border border-[#eedad3]/50">
+          <Link href="/?open=true" className="inline-flex items-center gap-2 text-[#991A3D] hover:opacity-70 transition-opacity bg-white/70 px-4 py-2 rounded-full backdrop-blur-md shadow-sm border border-[#eedad3]/50">
             <ArrowLeft className="w-5 h-5" />
             <span className={`${montserrat.className} text-[10px] font-bold tracking-[0.2em] uppercase`}>Voltar</span>
           </Link>
