@@ -78,7 +78,7 @@ export default function ConviteAberto() {
 
         <div className="flex flex-col gap-8 w-full z-20">
           <ActionButton Icon={MapPin} label="LOCAL DA FESTA" href="/local" />
-          <ActionButton Icon={Check} label="CONFIRMAR PRESENÇA" />
+          <ActionButton Icon={Check} label="CONFIRMAR PRESENÇA" href="/confirmar-presenca" />
           <ActionButton Icon={Search} label="SUGESTÕES DE PRESENTE" href="/sugestoes" />
         </div>
       </section>
