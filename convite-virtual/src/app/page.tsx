@@ -1,16 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation'; // Importe isso
+
+import { useEffect, useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import Envelope from '../components/Envelope';
 import ConviteAberto from '../components/ConviteAberto';
 
-export default function Home() {
+
+// Componente separado para usar useSearchParams
+function ConviteConteudo() {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Verifica se a URL tem o parâmetro "open=true" ao carregar
   useEffect(() => {
     if (searchParams.get('open') === 'true') {
       setIsOpen(true);
@@ -22,8 +24,16 @@ export default function Home() {
       <AnimatePresence>
         {!isOpen && <Envelope key="envelope-component" onOpen={() => setIsOpen(true)} />}
       </AnimatePresence>
-
       {isOpen && <ConviteAberto />}
     </main>
+  );
+}
+
+// Página principal apenas envolve com Suspense
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Carregando convite...</div>}>
+      <ConviteConteudo />
+    </Suspense>
   );
 }

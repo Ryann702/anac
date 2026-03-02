@@ -105,7 +105,7 @@ export default function SugestoesPresente() {
 
             <div className="flex items-center gap-2 mt-4 opacity-40">
                 <Heart className="w-4 h-4 text-[#991A3D] fill-[#991A3D]" />
-                <span className={`${montserrat.className} text-[9px] uppercase tracking-widest text-[#991A3D]`}>Com amor, Ana.</span>
+                <span className={`${montserrat.className} text-[9px] uppercase tracking-widest text-[#991A3D]`}>Com amor, Karol.</span>
             </div>
           </div>
 
